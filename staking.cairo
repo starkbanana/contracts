@@ -11,7 +11,7 @@ trait IERC20<T> {
 #[starknet::interface]
 trait IBananaToken<TState> {
     // IERC20
-    fn total_supply(self: @TState, ) -> u256;
+    fn total_supply(self: @TState,) -> u256;
     fn balance_of(self: @TState, account: ContractAddress) -> u256;
     fn allowance(self: @TState, owner: ContractAddress, spender: ContractAddress) -> u256;
     fn transfer(self: @TState, recipient: ContractAddress, amount: u256) -> bool;
@@ -30,7 +30,7 @@ trait IBananaToken<TState> {
     fn decrease_allowance(self: @TState, spender: ContractAddress, subtracted_value: u256) -> bool;
 
     // IERC20Camel
-    fn totalSupply(self: @TState, ) -> u256;
+    fn totalSupply(self: @TState,) -> u256;
     fn balanceOf(self: @TState, account: ContractAddress) -> u256;
     fn transferFrom(
         self: @TState, sender: ContractAddress, recipient: ContractAddress, amount: u256
@@ -95,7 +95,7 @@ mod Stake {
 
     #[derive(Drop, starknet::Event)]
     struct Upgraded {
-        class_hash: starknet::ClassHash, 
+        class_hash: starknet::ClassHash,
     }
 
     #[derive(Drop, starknet::Event)]
@@ -269,7 +269,6 @@ mod Stake {
 
             let time_diff_in_secs: u256 = (block_ts - staking_ts).into();
             let balance_multiplier = (time_diff_in_secs.into() * self.reward_rate.read());
-
             let rewards = (staking_balance / 1000000000000000000) * balance_multiplier;
             assert(self.get_remaining_banana_tokens() >= rewards, 'Not enough banana tokens');
 
